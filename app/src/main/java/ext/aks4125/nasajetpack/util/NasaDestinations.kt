@@ -1,8 +1,8 @@
-package ext.aks4125.nasajetpack
+package ext.aks4125.nasajetpack.util
 
-import ext.aks4125.nasajetpack.NasaDestinationsArgs.ID
-import ext.aks4125.nasajetpack.NasaScreens.DETAIL_SCREEN
-import ext.aks4125.nasajetpack.NasaScreens.SEARCH_SCREEN
+import ext.aks4125.nasajetpack.util.NasaDestinationsArgs.ID
+import ext.aks4125.nasajetpack.util.NasaScreens.DETAIL_SCREEN
+import ext.aks4125.nasajetpack.util.NasaScreens.SEARCH_SCREEN
 
 
 /**

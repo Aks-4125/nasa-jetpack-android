@@ -108,6 +108,10 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.1"
 
+    //==================== Paging =========================
+    implementation "androidx.paging:paging-runtime:3.1.1"
+    implementation "androidx.paging:paging-compose:1.0.0"
+
     //==================== Testing UI + Unit ==================
     testImplementation 'io.mockk:mockk:1.13.4'
     testImplementation "androidx.arch.core:core-testing:2.2.0"
