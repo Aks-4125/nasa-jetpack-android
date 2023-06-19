@@ -1,6 +1,8 @@
 package ext.aks4125.nasajetpack.di
 
 import com.squareup.leakcanary.core.BuildConfig
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -11,7 +13,6 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
-
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -33,7 +34,11 @@ object NetworkModule {
     @Singleton
     @Provides
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
-        .addConverterFactory(MoshiConverterFactory.create())
+        .addConverterFactory(
+            MoshiConverterFactory.create(
+                Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
+            )
+        )
         .baseUrl(END_POINT)
         .client(okHttpClient)
         .build()
@@ -44,5 +49,5 @@ object NetworkModule {
     fun provideApiService(retrofit: Retrofit): NasaApi =
         retrofit.create(NasaApi::class.java)
 
-    private const val END_POINT = "https://images-api.nasa.gov"
+    private const val END_POINT = "https://images-api.nasa.gov/"
 }
