@@ -7,8 +7,8 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import ext.aks4125.nasajetpack.database.AppDatabase
-import ext.aks4125.nasajetpack.database.NasaDao
+import ext.aks4125.nasajetpack.data.local.AppDatabase
+import ext.aks4125.nasajetpack.data.local.NasaDao
 import javax.inject.Singleton
 
 

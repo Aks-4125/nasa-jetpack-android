@@ -16,7 +16,7 @@
         android:theme="@style/Theme.NasaJetpack"
         tools:targetApi="31">
         <activity
-            android:name=".NasaActivity"
+            android:name=".presentation.ui.main.NasaActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.NasaJetpack">
