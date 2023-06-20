@@ -41,13 +41,13 @@ val LightTypography = Typography(
     bodyMedium = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Normal,
-        color = background800,
+        color = background900,
         fontSize = 16.sp
     ),
     bodySmall = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Normal,
-        color = background800,
+        color = background900,
         fontSize = 14.sp
     )
 )
