@@ -46,12 +46,12 @@ import androidx.navigation.NavHostController
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
-import androidx.paging.compose.itemsIndexed
+import androidx.paging.compose.itemContentType
+import androidx.paging.compose.itemKey
 import coil.compose.AsyncImage
 import ext.aks4125.nasajetpack.R
 import ext.aks4125.nasajetpack.data.PlanetInfo
 import ext.aks4125.nasajetpack.ui.components.ShimmerBrush
-import ext.aks4125.nasajetpack.util.Dimens.dimen_10
 import ext.aks4125.nasajetpack.util.Dimens.dimen_150
 import ext.aks4125.nasajetpack.util.Dimens.dimen_16
 import ext.aks4125.nasajetpack.util.Dimens.dimen_20
@@ -62,7 +62,8 @@ import ext.aks4125.nasajetpack.util.Dimens.dimen_8
 @Composable
 internal fun SearchScreen(
     navController: NavHostController,
-    viewModel: SearchViewModel
+    viewModel: SearchViewModel,
+    navigateToDetail: (String) -> Unit
 ) {
     val items = viewModel.itemPager.collectAsLazyPagingItems()
 
@@ -74,7 +75,7 @@ internal fun SearchScreen(
     ) {
         CustomSearchBar(viewModel)
         // lazy load items
-        ListItem(item = items, viewModel = viewModel)
+        ListItem(item = items, viewModel = viewModel, navigateToDetail = navigateToDetail)
     }
 
 }
@@ -130,6 +131,7 @@ internal fun CustomSearchBar(viewModel: SearchViewModel) {
 fun ListItem(
     item: LazyPagingItems<PlanetInfo>,
     viewModel: SearchViewModel,
+    navigateToDetail: (String) -> Unit,
 ) {
 
     if (viewModel.query.value.isNotEmpty())
@@ -157,12 +159,17 @@ fun ListItem(
 
             else -> {
                 LazyColumn(modifier = Modifier.padding(dimen_4)) {
-                    itemsIndexed(item) { index, item ->
-                        item?.let {
+                    items(
+                        count = item.itemCount,
+                        key = item.itemKey(),
+                        contentType = item.itemContentType()
+                    ) { index ->
+                        item[index]?.let {
                             PlanetTile(
-                                planetInfo = item,
+                                planetInfo = it,
                                 modifier = Modifier
-                                    .fillMaxWidth()
+                                    .fillMaxWidth(),
+                                navigateToDetail = navigateToDetail
                             )
                         }
                     }
@@ -172,23 +179,21 @@ fun ListItem(
 }
 
 @Composable
-fun PlanetTile(planetInfo: PlanetInfo, modifier: Modifier) {
+fun PlanetTile(planetInfo: PlanetInfo, modifier: Modifier, navigateToDetail: (String) -> Unit) {
     val showShimmer = remember { mutableStateOf(true) }
-
-
     Card(
         shape = RoundedCornerShape(dimen_8),
         modifier = modifier
-            .padding(start = dimen_10, top = dimen_4, bottom = dimen_10)
+            .padding(start = dimen_8, bottom = dimen_8, end = dimen_8)
             .fillMaxWidth(),
         elevation = CardDefaults.cardElevation(
-            defaultElevation = dimen_10,
+            defaultElevation = dimen_4,
         ),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.primaryContainer,
         ),
     ) {
-        Row(modifier = Modifier.clickable(onClick = { })) {
+        Row(modifier = Modifier.clickable(onClick = { navigateToDetail(planetInfo.nasaId) })) {
             AsyncImage(
                 modifier = Modifier
                     .clip(RoundedCornerShape(dimen_20))
@@ -221,7 +226,3 @@ fun PlanetTile(planetInfo: PlanetInfo, modifier: Modifier) {
 
     Spacer(modifier = Modifier.height(dimen_8))
 }
-
-
-
-

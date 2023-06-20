@@ -5,6 +5,7 @@ import ext.aks4125.nasajetpack.data.PlanetInfo
 import ext.aks4125.nasajetpack.data.asDatabaseModel
 import ext.aks4125.nasajetpack.database.AppDatabase
 import ext.aks4125.nasajetpack.database.PlanetEntity
+import kotlinx.coroutines.flow.Flow
 import java.util.UUID
 import javax.inject.Inject
 
@@ -36,7 +37,7 @@ class NasaRepository @Inject constructor(
         }
     }
 
-    private fun getPlanetDetail(nasaId: String) =
+    suspend fun getPlanetDetail(nasaId: String): PlanetEntity? =
         appDatabase.usersDao.getPlanetDetails(nasaId)
 
 }

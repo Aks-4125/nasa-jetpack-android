@@ -15,7 +15,7 @@ import ext.aks4125.nasajetpack.network.NasaPagingSource
 import ext.aks4125.nasajetpack.network.NasaRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
-
+private const val PAGE_MAX = 100
 @HiltViewModel
 class SearchViewModel @Inject constructor(
     private val repository: NasaRepository,
@@ -26,9 +26,9 @@ class SearchViewModel @Inject constructor(
 
     private lateinit var pagingSource: NasaPagingSource
 
-    val itemPager: Flow<PagingData<PlanetInfo>> = Pager(config = PagingConfig(50)) {
+    val itemPager: Flow<PagingData<PlanetInfo>> = Pager(config = PagingConfig(PAGE_MAX)) {
         NasaPagingSource(query.value, repository).also { pagingSource = it }
-    }.flow
+    }.flow.cachedIn(viewModelScope)
 
     fun setQuery(query: String) {
         this.query.value = query
@@ -37,5 +37,5 @@ class SearchViewModel @Inject constructor(
     fun invalidateDataSource() {
         pagingSource.invalidate()
     }
-
 }
+

@@ -6,7 +6,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.RoomDatabase
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface NasaDao {
@@ -14,7 +13,7 @@ interface NasaDao {
     suspend fun insertData(planets: List<PlanetEntity>)
 
     @Query("select * from PlanetEntity WHERE nasaId LIKE :id")
-    fun getPlanetDetails(id: String): Flow<PlanetEntity?>
+    suspend fun getPlanetDetails(id: String): PlanetEntity?
 
     @Query("Delete From PlanetEntity")
     suspend fun clearAll()

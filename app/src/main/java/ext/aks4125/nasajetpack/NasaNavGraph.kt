@@ -7,14 +7,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import ext.aks4125.nasajetpack.ui.components.ScaffoldWithTopBar
 import ext.aks4125.nasajetpack.ui.detail.DetailScreen
 import ext.aks4125.nasajetpack.ui.search.SearchScreen
 import ext.aks4125.nasajetpack.ui.search.SearchViewModel
 import ext.aks4125.nasajetpack.util.NasaDestinations
+import ext.aks4125.nasajetpack.util.NasaDestinationsArgs
 
 @ExperimentalMaterial3Api
 @Composable
@@ -36,10 +39,19 @@ fun NasaNavGraph(
             modifier = Modifier.padding(padding)
         ) {
             composable(NasaDestinations.LANDING_PAGE_SEARCH) {
-                SearchScreen(navController, viewModel)
+                SearchScreen(navController, viewModel) {
+                    navController.navigate(NasaDestinations.DETAIL + "/$it")
+                }
             }
-            composable(NasaDestinations.DETAIL) {
-                DetailScreen(navController)
+            composable(
+                route = "${NasaDestinations.DETAIL}/{${NasaDestinationsArgs.ID}}",
+                arguments = listOf(
+                    navArgument(NasaDestinationsArgs.ID) {
+                        type = NavType.StringType
+                    }
+                )
+            ) {
+                DetailScreen()
             }
         }
     }
