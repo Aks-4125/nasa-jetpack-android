@@ -10,8 +10,6 @@ class NasaPagingSource(
     private val query: String,
     private val repository: NasaRepository
 ) : PagingSource<Int, PlanetInfo>() {
-
-
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, PlanetInfo> {
         return try {
             val page = if (params.key != null && params.key!! <= 0) 1 else params.key ?: 1
@@ -31,7 +29,7 @@ class NasaPagingSource(
             Log.e("okhttp --", "list size = ${mergeList.size}")
             LoadResult.Page(
                 data = mergeList,
-                prevKey = null,
+                prevKey = if (page > 1) page - 1 else null,
                 nextKey = if (response.isEmpty()) null else page.inc(),
             )
         } catch (e: Exception) {
