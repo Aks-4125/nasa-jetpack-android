@@ -1,43 +1,10 @@
 package ext.aks4125.nasajetpack.data
 
-import android.util.Log
-import ext.aks4125.nasajetpack.data.network.PlanetInfo
-import ext.aks4125.nasajetpack.data.network.asDatabaseModel
-import ext.aks4125.nasajetpack.data.local.AppDatabase
 import ext.aks4125.nasajetpack.data.local.PlanetEntity
-import ext.aks4125.nasajetpack.data.network.NasaApi
-import java.util.UUID
-import javax.inject.Inject
+import ext.aks4125.nasajetpack.data.network.PlanetInfo
 
-class NasaRepository @Inject constructor(
-    private val api: NasaApi,
-    private val appDatabase: AppDatabase
-) {
-    suspend fun searchQuery(query: String, page: Int): List<PlanetInfo> {
-        val response = api.searchQuery(query, "image", page)
-        Log.e("okhttp --", "query  = $query -- page = $page")
+interface NasaRepository {
+    suspend fun searchQuery(query: String, page: Int): List<PlanetInfo>
 
-        val items = response.collection?.items ?: arrayListOf()
-
-        val mergeList: List<PlanetInfo> = items.map {
-            it.itemList?.first()?.copy(imageUrl = it.image?.first()?.imageUrl) ?: PlanetInfo(
-                nasaId = UUID.randomUUID().toString()
-            )
-        }.toList()
-
-        insertData(mergeList.asDatabaseModel())
-        return mergeList
-    }
-
-    private suspend fun insertData(list: List<PlanetEntity>) {
-        try {
-            appDatabase.usersDao.insertData(list)
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-    }
-
-    suspend fun getPlanetDetail(nasaId: String): PlanetEntity? =
-        appDatabase.usersDao.getPlanetDetails(nasaId)
-
+    suspend fun getPlanetDetail(nasaId: String): PlanetEntity?
 }

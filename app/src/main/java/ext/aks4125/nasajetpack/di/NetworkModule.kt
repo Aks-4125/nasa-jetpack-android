@@ -7,6 +7,9 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import ext.aks4125.nasajetpack.data.NasaRepository
+import ext.aks4125.nasajetpack.data.NasaRepositoryImpl
+import ext.aks4125.nasajetpack.data.local.AppDatabase
 import ext.aks4125.nasajetpack.data.network.NasaApi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -45,6 +48,12 @@ object NetworkModule {
     @Singleton
     fun provideApiService(retrofit: Retrofit): NasaApi =
         retrofit.create(NasaApi::class.java)
+
+    @Singleton
+    @Provides
+    fun provideNasaRepository(api: NasaApi, appDatabase: AppDatabase): NasaRepository {
+        return NasaRepositoryImpl(api, appDatabase)
+    }
 
     private const val END_POINT = "https://images-api.nasa.gov/"
 }

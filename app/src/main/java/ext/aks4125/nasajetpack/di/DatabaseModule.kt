@@ -27,7 +27,7 @@ object DatabaseModule {
 
     @Provides
     fun provideChannelDao(appDatabase: AppDatabase): NasaDao {
-        return appDatabase.usersDao
+        return appDatabase.nasaDao
     }
 
 }

@@ -21,5 +21,5 @@ interface NasaDao {
 
 @Database(entities = [PlanetEntity::class], version = 2)
 abstract class AppDatabase : RoomDatabase() {
-    abstract val usersDao: NasaDao
+    abstract val nasaDao: NasaDao
 }

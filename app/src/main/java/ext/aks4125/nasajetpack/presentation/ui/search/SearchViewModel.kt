@@ -25,7 +25,10 @@ class SearchViewModel @Inject constructor(
     private lateinit var pagingSource: NasaPagingSource
 
     val itemPager: Flow<PagingData<PlanetInfo>> = Pager(config = PagingConfig(PAGE_MAX)) {
-        NasaPagingSource(query.value, repository).also { pagingSource = it }
+        NasaPagingSource(query.value, repository)
+            .also {
+            pagingSource = it
+        }
     }.flow.cachedIn(viewModelScope)
 
     fun setQuery(query: String) {
