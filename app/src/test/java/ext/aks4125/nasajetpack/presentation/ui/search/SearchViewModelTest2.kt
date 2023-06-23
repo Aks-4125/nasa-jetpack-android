@@ -77,10 +77,7 @@ internal class SearchViewModelTest2 {
 
         Assert.assertNotNull(entity)
 
-
-
         viewModel = SearchViewModel(repository)
-
 
         coEvery {
             api.searchQuery(query = "test", type = "image", startIndex = 1)
