@@ -13,7 +13,7 @@ import ext.aks4125.core.ui.theme.shimmerHighLight
 import ext.aks4125.core.ui.theme.white87
 
 @Composable
-fun ShimmerBrush(showShimmer: Boolean = true, targetValue: Float = 1000f): Brush {
+fun shimmerBrush(showShimmer: Boolean = true, targetValue: Float = 1000f): Brush {
     return if (showShimmer) {
         val shimmerColors = listOf(
             shimmerHighLight,

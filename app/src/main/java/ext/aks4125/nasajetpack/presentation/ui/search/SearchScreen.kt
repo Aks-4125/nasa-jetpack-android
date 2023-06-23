@@ -43,14 +43,13 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.onClick
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.navigation.NavHostController
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemContentType
 import androidx.paging.compose.itemKey
 import coil.compose.AsyncImage
-import ext.aks4125.core.ui.components.ShimmerBrush
+import ext.aks4125.core.ui.components.shimmerBrush
 import ext.aks4125.nasajetpack.R
 import ext.aks4125.nasajetpack.data.network.PlanetInfo
 import ext.aks4125.nasajetpack.presentation.navigation.Dimens.dimen_150
@@ -203,7 +202,7 @@ fun PlanetTile(planetInfo: PlanetInfo, modifier: Modifier, navigateToDetail: (St
                 modifier = Modifier
                     .clip(RoundedCornerShape(dimen_20))
                     .background(
-                        ShimmerBrush(
+                        shimmerBrush(
                             targetValue = 1300f, showShimmer = showShimmer.value
                         )
                     )
