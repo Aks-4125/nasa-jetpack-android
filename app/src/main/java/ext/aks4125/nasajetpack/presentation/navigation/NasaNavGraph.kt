@@ -12,7 +12,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import ext.aks4125.nasajetpack.presentation.ui.components.ScaffoldWithTopBar
+import ext.aks4125.core.ui.components.ScaffoldWithTopBar
 import ext.aks4125.nasajetpack.presentation.ui.detail.DetailScreen
 import ext.aks4125.nasajetpack.presentation.ui.search.SearchScreen
 import ext.aks4125.nasajetpack.presentation.ui.search.SearchViewModel
@@ -30,7 +30,7 @@ fun NasaNavGraph(
 
     Scaffold(
         topBar = {
-            ScaffoldWithTopBar(navController) { finish() }
+            ext.aks4125.core.ui.components.ScaffoldWithTopBar(navController) { finish() }
         }
     ) { padding ->
         NavHost(
@@ -39,7 +39,7 @@ fun NasaNavGraph(
             modifier = Modifier.padding(padding)
         ) {
             composable(NasaDestinations.LANDING_PAGE_SEARCH) {
-                SearchScreen(navController, viewModel) {
+                SearchScreen(viewModel) {
                     navController.navigate(NasaDestinations.DETAIL + "/$it")
                 }
             }

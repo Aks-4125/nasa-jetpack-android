@@ -26,6 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -34,12 +35,12 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import ext.aks4125.nasajetpack.R
 import ext.aks4125.nasajetpack.data.local.PlanetEntity
-import ext.aks4125.nasajetpack.presentation.ui.components.LabelTextMedium
-import ext.aks4125.nasajetpack.presentation.theme.NasaJetpackTheme
 import ext.aks4125.nasajetpack.presentation.navigation.Dimens
 import ext.aks4125.nasajetpack.presentation.navigation.Dimens.dimen_10
 import ext.aks4125.nasajetpack.presentation.navigation.Dimens.dimen_4
 import ext.aks4125.nasajetpack.presentation.navigation.Dimens.dimen_8
+import ext.aks4125.core.ui.theme.NasaJetpackTheme
+import ext.aks4125.core.ui.components.LabelTextMedium
 
 @Composable
 fun DetailScreen() {
@@ -65,13 +66,13 @@ fun DetailScreen() {
 @Composable
 fun PlanetDetail(item: PlanetEntity?, formatDate: (String) -> String) {
     Card(
-        shape = RoundedCornerShape(Dimens.dimen_8),
+        shape = RoundedCornerShape(dimen_8),
         modifier = Modifier
             .fillMaxWidth()
             .padding(dimen_8)
             .fillMaxHeight(),
         elevation = CardDefaults.cardElevation(
-            defaultElevation = Dimens.dimen_4,
+            defaultElevation = dimen_4,
         ),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.primaryContainer,
@@ -88,7 +89,8 @@ fun PlanetDetail(item: PlanetEntity?, formatDate: (String) -> String) {
                         .clip(RoundedCornerShape(Dimens.dimen_20))
                         .padding(top = dimen_10)
                         .width(Dimens.dimen_150)
-                        .height(Dimens.dimen_150),
+                        .height(Dimens.dimen_150)
+                        .testTag("image"),
                     model = item?.imageUrl.orEmpty(),
                     contentDescription = null,
                     contentScale = ContentScale.FillBounds,
@@ -116,7 +118,8 @@ fun PlanetDetail(item: PlanetEntity?, formatDate: (String) -> String) {
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(start = Dimens.dimen_16)
-                            .weight(3f),
+                            .weight(3f)
+                            .testTag("title"),
                         text = item?.title.orEmpty(),
                         style = MaterialTheme.typography.titleMedium,
                         overflow = TextOverflow.Ellipsis,
@@ -129,7 +132,7 @@ fun PlanetDetail(item: PlanetEntity?, formatDate: (String) -> String) {
                     thickness = 1.dp,
                     color = Color.LightGray
                 )
-                Spacer(modifier = Modifier.height(Dimens.dimen_4))
+                Spacer(modifier = Modifier.height(dimen_4))
 
                 // -------------------  Date ---------------------
                 Row(
@@ -145,7 +148,8 @@ fun PlanetDetail(item: PlanetEntity?, formatDate: (String) -> String) {
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(start = Dimens.dimen_16)
-                            .weight(3f),
+                            .weight(3f)
+                            .testTag("date"),
                         text = formatDate(item?.dateCreated.orEmpty()),
                         style = MaterialTheme.typography.titleMedium,
                     )
@@ -157,7 +161,7 @@ fun PlanetDetail(item: PlanetEntity?, formatDate: (String) -> String) {
                     thickness = 1.dp,
                     color = Color.LightGray
                 )
-                Spacer(modifier = Modifier.height(Dimens.dimen_4))
+                Spacer(modifier = Modifier.height(dimen_4))
 
                 // -------------------  Description ---------------------
                 Row(
@@ -173,7 +177,8 @@ fun PlanetDetail(item: PlanetEntity?, formatDate: (String) -> String) {
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(start = Dimens.dimen_16)
-                            .weight(3f),
+                            .weight(3f)
+                            .testTag("description"),
                         text = item?.description.orEmpty(),
                         style = MaterialTheme.typography.titleMedium,
                         overflow = TextOverflow.Ellipsis,
@@ -186,7 +191,7 @@ fun PlanetDetail(item: PlanetEntity?, formatDate: (String) -> String) {
                     thickness = 1.dp,
                     color = Color.LightGray
                 )
-                Spacer(modifier = Modifier.height(Dimens.dimen_4))
+                Spacer(modifier = Modifier.height(dimen_4))
 
             }
         }

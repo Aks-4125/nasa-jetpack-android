@@ -1,4 +1,4 @@
-package ext.aks4125.nasajetpack.presentation.ui.components
+package ext.aks4125.core.ui.components
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -12,7 +12,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
-import ext.aks4125.nasajetpack.R
+import ext.aks4125.core.R
 
 
 @OptIn(ExperimentalMaterial3Api::class)

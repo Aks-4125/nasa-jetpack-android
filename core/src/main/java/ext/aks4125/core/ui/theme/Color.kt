@@ -1,4 +1,4 @@
-package ext.aks4125.nasajetpack.presentation.theme
+package ext.aks4125.core.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

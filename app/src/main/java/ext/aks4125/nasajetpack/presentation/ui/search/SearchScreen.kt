@@ -40,6 +40,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.onClick
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.navigation.NavHostController
@@ -49,9 +50,9 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemContentType
 import androidx.paging.compose.itemKey
 import coil.compose.AsyncImage
+import ext.aks4125.core.ui.components.ShimmerBrush
 import ext.aks4125.nasajetpack.R
 import ext.aks4125.nasajetpack.data.network.PlanetInfo
-import ext.aks4125.nasajetpack.presentation.ui.components.ShimmerBrush
 import ext.aks4125.nasajetpack.presentation.navigation.Dimens.dimen_150
 import ext.aks4125.nasajetpack.presentation.navigation.Dimens.dimen_16
 import ext.aks4125.nasajetpack.presentation.navigation.Dimens.dimen_20
@@ -61,7 +62,6 @@ import ext.aks4125.nasajetpack.presentation.navigation.Dimens.dimen_8
 
 @Composable
 internal fun SearchScreen(
-    navController: NavHostController,
     viewModel: SearchViewModel,
     navigateToDetail: (String) -> Unit
 ) {
@@ -107,9 +107,10 @@ internal fun CustomSearchBar(viewModel: SearchViewModel) {
             },
             placeholder = {
                 Text(
+                    modifier = Modifier.testTag("input"),
                     style = MaterialTheme.typography.labelMedium,
                     text = "Search",
-                    fontSize = MaterialTheme.typography.titleMedium.fontSize
+                    fontSize = MaterialTheme.typography.titleMedium.fontSize,
                 )
             },
             leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },
@@ -193,7 +194,11 @@ fun PlanetTile(planetInfo: PlanetInfo, modifier: Modifier, navigateToDetail: (St
             containerColor = MaterialTheme.colorScheme.primaryContainer,
         ),
     ) {
-        Row(modifier = Modifier.clickable(onClick = { navigateToDetail(planetInfo.nasaId) })) {
+        Row(modifier = Modifier
+            .clickable(onClick = { navigateToDetail(planetInfo.nasaId) })
+            .semantics {
+                onClick(label = "Navigate to Detail Screen", action = null)
+            }) {
             AsyncImage(
                 modifier = Modifier
                     .clip(RoundedCornerShape(dimen_20))

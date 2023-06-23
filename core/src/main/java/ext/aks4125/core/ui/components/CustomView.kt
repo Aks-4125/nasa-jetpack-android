@@ -1,4 +1,4 @@
-package ext.aks4125.nasajetpack.presentation.ui.components
+package ext.aks4125.core.ui.components
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text

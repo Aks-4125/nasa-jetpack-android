@@ -2,7 +2,6 @@ package ext.aks4125.nasajetpack.util
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.TestDispatcher
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
@@ -19,6 +18,6 @@ class MainDispatcherRule constructor(
     }
 
     override fun finished(description: Description) {
-         Dispatchers.resetMain()
+        Dispatchers.resetMain()
     }
 }

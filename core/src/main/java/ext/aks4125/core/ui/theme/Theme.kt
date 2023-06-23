@@ -1,4 +1,4 @@
-package ext.aks4125.nasajetpack.presentation.theme
+package ext.aks4125.core.ui.theme
 
 import android.app.Activity
 import android.os.Build

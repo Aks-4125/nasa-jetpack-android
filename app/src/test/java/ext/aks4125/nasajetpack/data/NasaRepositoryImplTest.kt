@@ -28,14 +28,14 @@ class NasaRepositoryImplTest {
     @get:Rule
     var coroutineTestRule = MainDispatcherRule()
 
+    private lateinit var repository: NasaRepositoryImpl
 
     private val api: NasaApi = mockk()
+
     private val appDatabase: AppDatabase = mockk()
 
-    private val nasaDao = mockk<NasaDao>()
 
 
-    private lateinit var repository: NasaRepositoryImpl
 
     fun setUp() {
         MockKAnnotations.init(this, relaxUnitFun = true)
@@ -83,7 +83,7 @@ class NasaRepositoryImplTest {
                 CollectData(
                     listOf(
                         Planet(
-                           null, // list?.first() should return null
+                            null, // list?.first() should return null
                             emptyList()
                         )
                     )

@@ -1,4 +1,4 @@
-package ext.aks4125.nasajetpack.presentation.ui.components
+package ext.aks4125.core.ui.components
 
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.animateFloat
@@ -9,8 +9,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import ext.aks4125.nasajetpack.presentation.theme.shimmerHighLight
-import ext.aks4125.nasajetpack.presentation.theme.white87
+import ext.aks4125.core.ui.theme.shimmerHighLight
+import ext.aks4125.core.ui.theme.white87
 
 @Composable
 fun ShimmerBrush(showShimmer: Boolean = true, targetValue: Float = 1000f): Brush {
