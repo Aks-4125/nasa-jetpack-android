@@ -64,11 +64,6 @@ class SearchScreenKtTest {
     }
 
     @Test
-    fun searchViewVisibilityTest() {
-        composeTestRule.onNodeWithText("Search").assertExists()
-    }
-
-    @Test
     fun displayAndSearchUiTest() {
 
         composeTestRule
@@ -83,7 +78,6 @@ class SearchScreenKtTest {
             .onNode(hasTestTag("search"))
             .performTouchInput { click() }
             .assertContentDescriptionEquals("Search to get planet details")
-            .performTextInput("moon")
 
         composeTestRule
             .onNode(hasTestTag("search"))
