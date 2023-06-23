@@ -34,6 +34,7 @@ jobs:
           test-command: ./gradlew connectedDebugAndroidTest
           system-image: system-images;android-25;google_apis;x86
 
+
       # And finally run the release build
       - run:
           name: Assemble release build
