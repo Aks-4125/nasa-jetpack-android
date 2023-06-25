@@ -80,6 +80,22 @@ The project utilizes the following libraries:
 
 - **Room**
   - [AndroidX Room](https://developer.android.com/topic/libraries/architecture/room): Provides an abstraction layer over SQLite for database operations.
+ 
+
+## Screenshots
+
+ | Dark Mode  | Tablet |
+| ------------- | ------------- |
+| ![](https://github.com/Aks-4125/nasa-jetpack-android/blob/master/screenshots/darkmode.gif) | ![](https://github.com/Aks-4125/nasa-jetpack-android/blob/master/screenshots/tablet.gif)|
+
+
+
+
+
+## Download APK directly from <a href="https://github.com/Aks-4125/nasa-jetpack-android/blob/master/screenshots/nasa-debug.apk" download>Here</a>
+
+## Download Zip directly from <a href="https://github.com/Aks-4125/nasa-jetpack-android/blob/master/screenshots/Nasa%20Jetpack.zip" download>Here</a>
+
 
 License
 The project is licensed under the [MIT License](https://github.com/Aks-4125/nasa-jetpack-android/blob/master/LICENSE.md).
