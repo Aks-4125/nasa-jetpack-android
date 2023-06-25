@@ -11,7 +11,6 @@ import ext.aks4125.nasajetpack.data.local.AppDatabase
 import ext.aks4125.nasajetpack.data.local.NasaDao
 import javax.inject.Singleton
 
-
 @InstallIn(SingletonComponent::class)
 @Module
 object DatabaseModule {
@@ -21,7 +20,7 @@ object DatabaseModule {
         return Room.databaseBuilder(
             appContext,
             AppDatabase::class.java,
-            appContext.packageName
+            appContext.packageName,
         ).fallbackToDestructiveMigration().build()
     }
 
@@ -29,5 +28,4 @@ object DatabaseModule {
     fun provideChannelDao(appDatabase: AppDatabase): NasaDao {
         return appDatabase.nasaDao
     }
-
 }

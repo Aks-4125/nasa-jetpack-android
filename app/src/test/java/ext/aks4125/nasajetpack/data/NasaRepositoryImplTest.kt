@@ -1,7 +1,6 @@
 package ext.aks4125.nasajetpack.data
 
 import ext.aks4125.nasajetpack.data.local.AppDatabase
-import ext.aks4125.nasajetpack.data.local.NasaDao
 import ext.aks4125.nasajetpack.data.network.CollectData
 import ext.aks4125.nasajetpack.data.network.NasaApi
 import ext.aks4125.nasajetpack.data.network.NasaModel
@@ -34,9 +33,6 @@ class NasaRepositoryImplTest {
 
     private val appDatabase: AppDatabase = mockk()
 
-
-
-
     fun setUp() {
         MockKAnnotations.init(this, relaxUnitFun = true)
     }
@@ -58,11 +54,11 @@ class NasaRepositoryImplTest {
                         Planet(
                             TestData.testDataPlanetInfoList(),
                             listOf(
-                                PlanetImage()
-                            )
-                        )
-                    )
-                )
+                                PlanetImage(),
+                            ),
+                        ),
+                    ),
+                ),
             )
         }
 
@@ -84,16 +80,15 @@ class NasaRepositoryImplTest {
                     listOf(
                         Planet(
                             null, // list?.first() should return null
-                            emptyList()
-                        )
-                    )
-                )
+                            emptyList(),
+                        ),
+                    ),
+                ),
             )
         }
 
         val emptyData = repository.searchQuery(query = "test", page = 1)
         Assert.assertNotNull(emptyData)
-
     }
 
     @Test
@@ -106,10 +101,8 @@ class NasaRepositoryImplTest {
             TestData.testDataPlanetEntity()
         }
 
-
-        val entity = repository.getPlanetDetail(nasaId = "KSC-20150402-PH");
+        val entity = repository.getPlanetDetail(nasaId = "KSC-20150402-PH")
 
         Assert.assertNotNull(entity)
     }
-
 }

@@ -16,5 +16,4 @@ class FakeMyRepository() : NasaRepository {
     override suspend fun getPlanetDetail(nasaId: String): PlanetEntity {
         return TestData.testDataPlanetEntity()
     }
-
 }

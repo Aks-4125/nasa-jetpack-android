@@ -5,5 +5,5 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class NasaModel(
-    @field:Json(name = "collection") var collection: CollectData? = null
+    @field:Json(name = "collection") var collection: CollectData? = null,
 )

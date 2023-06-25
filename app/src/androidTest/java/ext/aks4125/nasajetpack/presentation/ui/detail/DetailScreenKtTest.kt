@@ -9,12 +9,10 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.MediumTest
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
+import ext.aks4125.core.ui.theme.NasaJetpackTheme
 import ext.aks4125.nasajetpack.data.NasaRepository
 import ext.aks4125.nasajetpack.data.local.PlanetEntity
-import ext.aks4125.core.ui.theme.NasaJetpackTheme
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import org.junit.After
-import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -29,7 +27,6 @@ const val TEST_ARGUMENT = "ID"
 @ExperimentalCoroutinesApi
 class DetailScreenKtTest {
 
-
     @get:Rule(order = 0)
     var hiltRule = HiltAndroidRule(this)
 
@@ -42,7 +39,6 @@ class DetailScreenKtTest {
     lateinit var viewModel: DetailViewModel
     private lateinit var savedStateHandle: SavedStateHandle
 
-
     @Before
     fun setUp() {
         hiltRule.inject()
@@ -52,7 +48,7 @@ class DetailScreenKtTest {
         viewModel = DetailViewModel(repository, savedStateHandle)
 
         composeTestRule.setContent {
-            ext.aks4125.core.ui.theme.NasaJetpackTheme {
+            NasaJetpackTheme {
                 Surface {
                     PlanetDetail(
                         item = PlanetEntity(
@@ -60,19 +56,13 @@ class DetailScreenKtTest {
                             "12:12332:13:Z",
                             "Art of Moon",
                             "test description",
-                            "test"
+                            "test",
                         ),
-                        formatDate = { arg -> arg }
+                        formatDate = { arg -> arg },
                     )
                 }
             }
         }
-    }
-
-
-    @After
-    fun tearDown() {
-
     }
 
     @Test
@@ -88,7 +78,6 @@ class DetailScreenKtTest {
 
         composeTestRule.onNodeWithTag("description")
             .assertExists()
-
     }
 
     @Test

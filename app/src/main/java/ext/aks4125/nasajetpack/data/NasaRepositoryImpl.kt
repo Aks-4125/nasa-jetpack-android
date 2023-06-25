@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 class NasaRepositoryImpl @Inject constructor(
     private val api: NasaApi,
-    private val appDatabase: AppDatabase
+    private val appDatabase: AppDatabase,
 ) : NasaRepository {
 
     override suspend fun searchQuery(query: String, page: Int): List<PlanetInfo> {
@@ -20,7 +20,7 @@ class NasaRepositoryImpl @Inject constructor(
 
         val mergeList: List<PlanetInfo> = items.map {
             it.itemList?.first()?.copy(imageUrl = it.image?.first()?.imageUrl) ?: PlanetInfo(
-                nasaId = UUID.randomUUID().toString()
+                nasaId = UUID.randomUUID().toString(),
             )
         }.toList()
 
@@ -38,5 +38,4 @@ class NasaRepositoryImpl @Inject constructor(
 
     override suspend fun getPlanetDetail(nasaId: String): PlanetEntity? =
         appDatabase.nasaDao.getPlanetDetails(nasaId)
-
 }

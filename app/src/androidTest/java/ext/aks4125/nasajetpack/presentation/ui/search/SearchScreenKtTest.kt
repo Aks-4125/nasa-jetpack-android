@@ -5,8 +5,6 @@ import androidx.compose.ui.test.assertContentDescriptionEquals
 import androidx.compose.ui.test.hasTestTag
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
-import androidx.compose.ui.test.onNodeWithText
-import androidx.compose.ui.test.performTextInput
 import androidx.compose.ui.test.performTouchInput
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -16,8 +14,6 @@ import dagger.hilt.android.testing.HiltAndroidTest
 import ext.aks4125.core.ui.theme.NasaJetpackTheme
 import ext.aks4125.nasajetpack.data.NasaRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import org.junit.After
-import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -51,21 +47,15 @@ class SearchScreenKtTest {
                 Surface {
                     SearchScreen(
                         viewModel = viewModel,
-                        navigateToDetail = { it }
+                        navigateToDetail = { it },
                     )
                 }
             }
         }
     }
 
-    @After
-    fun tearDown() {
-
-    }
-
     @Test
     fun displayAndSearchUiTest() {
-
         composeTestRule
             .onNodeWithTag("search")
             .performTouchInput { click() }
@@ -73,7 +63,6 @@ class SearchScreenKtTest {
 
     @Test
     fun exitTestAppBarBackButton() {
-
         composeTestRule
             .onNode(hasTestTag("search"))
             .performTouchInput { click() }
@@ -82,7 +71,5 @@ class SearchScreenKtTest {
         composeTestRule
             .onNode(hasTestTag("search"))
             .performTouchInput { click() }
-
     }
-
 }

@@ -33,14 +33,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
+import ext.aks4125.core.ui.components.LabelTextMedium
+import ext.aks4125.core.ui.theme.NasaJetpackTheme
 import ext.aks4125.nasajetpack.R
 import ext.aks4125.nasajetpack.data.local.PlanetEntity
 import ext.aks4125.nasajetpack.presentation.navigation.Dimens
 import ext.aks4125.nasajetpack.presentation.navigation.Dimens.dimen_10
 import ext.aks4125.nasajetpack.presentation.navigation.Dimens.dimen_4
 import ext.aks4125.nasajetpack.presentation.navigation.Dimens.dimen_8
-import ext.aks4125.core.ui.theme.NasaJetpackTheme
-import ext.aks4125.core.ui.components.LabelTextMedium
 
 @Composable
 fun DetailScreen() {
@@ -48,14 +48,14 @@ fun DetailScreen() {
     val uiState = viewModel.uiState
     Scaffold(
         containerColor = Color.White,
-        modifier = Modifier.statusBarsPadding()
+        modifier = Modifier.statusBarsPadding(),
     ) { innerPadding ->
         Box(modifier = Modifier.padding(innerPadding)) {
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
                     .fillMaxHeight()
-                    .background(MaterialTheme.colorScheme.background)
+                    .background(MaterialTheme.colorScheme.background),
             ) {
                 PlanetDetail(item = uiState.item, formatDate = { arg -> viewModel.formatDate(arg) })
             }
@@ -75,14 +75,13 @@ fun PlanetDetail(item: PlanetEntity?, formatDate: (String) -> String) {
             defaultElevation = dimen_4,
         ),
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.primaryContainer,
+            containerColor = MaterialTheme.colorScheme.background,
         ),
         content = {
             Column(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalAlignment = Alignment.CenterHorizontally
+                horizontalAlignment = Alignment.CenterHorizontally,
             ) {
-
                 // -------------------  Image ---------------------
                 AsyncImage(
                     modifier = Modifier
@@ -94,25 +93,25 @@ fun PlanetDetail(item: PlanetEntity?, formatDate: (String) -> String) {
                     model = item?.imageUrl.orEmpty(),
                     contentDescription = null,
                     contentScale = ContentScale.FillBounds,
-                    alignment = Alignment.BottomCenter
+                    alignment = Alignment.BottomCenter,
                 )
                 Divider(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(dimen_8),
                     thickness = 1.dp,
-                    color = Color.LightGray
+                    color = Color.LightGray,
                 )
 
                 // -------------------  Title ---------------------
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     verticalAlignment = Alignment.Top,
-                    horizontalArrangement = Arrangement.Start
+                    horizontalArrangement = Arrangement.Start,
                 ) {
                     LabelTextMedium(
                         modifier = Modifier.weight(1f),
-                        text = stringResource(id = R.string.label_title)
+                        text = stringResource(id = R.string.label_title),
                     )
                     Text(
                         modifier = Modifier
@@ -130,7 +129,7 @@ fun PlanetDetail(item: PlanetEntity?, formatDate: (String) -> String) {
                         .fillMaxWidth()
                         .padding(dimen_4),
                     thickness = 1.dp,
-                    color = Color.LightGray
+                    color = Color.LightGray,
                 )
                 Spacer(modifier = Modifier.height(dimen_4))
 
@@ -138,11 +137,11 @@ fun PlanetDetail(item: PlanetEntity?, formatDate: (String) -> String) {
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     verticalAlignment = Alignment.Top,
-                    horizontalArrangement = Arrangement.Start
+                    horizontalArrangement = Arrangement.Start,
                 ) {
                     LabelTextMedium(
                         modifier = Modifier.weight(1f),
-                        text = stringResource(id = R.string.label_date)
+                        text = stringResource(id = R.string.label_date),
                     )
                     Text(
                         modifier = Modifier
@@ -159,7 +158,7 @@ fun PlanetDetail(item: PlanetEntity?, formatDate: (String) -> String) {
                         .fillMaxWidth()
                         .padding(dimen_4),
                     thickness = 1.dp,
-                    color = Color.LightGray
+                    color = Color.LightGray,
                 )
                 Spacer(modifier = Modifier.height(dimen_4))
 
@@ -167,11 +166,11 @@ fun PlanetDetail(item: PlanetEntity?, formatDate: (String) -> String) {
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     verticalAlignment = Alignment.Top,
-                    horizontalArrangement = Arrangement.Start
+                    horizontalArrangement = Arrangement.Start,
                 ) {
                     LabelTextMedium(
                         modifier = Modifier.weight(1f),
-                        text = stringResource(id = R.string.label_description)
+                        text = stringResource(id = R.string.label_description),
                     )
                     Text(
                         modifier = Modifier
@@ -189,12 +188,11 @@ fun PlanetDetail(item: PlanetEntity?, formatDate: (String) -> String) {
                         .fillMaxWidth()
                         .padding(dimen_4),
                     thickness = 1.dp,
-                    color = Color.LightGray
+                    color = Color.LightGray,
                 )
                 Spacer(modifier = Modifier.height(dimen_4))
-
             }
-        }
+        },
     )
 }
 
@@ -209,9 +207,9 @@ fun PlanetPreview() {
                     "12:12332:13:Z",
                     "Art of Moon",
                     "test description\ntest line 2\nline 3 \nline 4",
-                    "test"
+                    "test",
                 ),
-                formatDate = { arg -> arg }
+                formatDate = { arg -> arg },
             )
         }
     }

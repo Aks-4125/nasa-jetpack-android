@@ -21,7 +21,6 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.jupiter.api.extension.ExtendWith
 
-
 @ExperimentalCoroutinesApi
 @ExtendWith(InstantExecutorExtension::class)
 internal class SearchViewModelTest {
@@ -44,13 +43,11 @@ internal class SearchViewModelTest {
 
     @Test
     fun `search with query success`() = runBlocking {
-
         viewModel = SearchViewModel(repository = repository)
-
 
         val pagingSource = NasaPagingSource(
             "test",
-            repository = repository
+            repository = repository,
         )
 
         coEvery {
@@ -60,13 +57,12 @@ internal class SearchViewModelTest {
         }
         viewModel.setQuery("test")
 
-
         val params = PagingSource
             .LoadParams
             .Refresh(
                 key = 1,
                 loadSize = 1,
-                placeholdersEnabled = false
+                placeholdersEnabled = false,
             )
 
         val expected: PagingSource.LoadResult.Page<Int, PlanetInfo> = PagingSource
@@ -74,35 +70,34 @@ internal class SearchViewModelTest {
             .Page(
                 data = TestData.testDataPlanetInfoList(),
                 prevKey = null,
-                nextKey = 2
+                nextKey = 2,
             )
 
         // when
         val actual: PagingSource.LoadResult<Int, PlanetInfo> = pagingSource.load(params = params)
 
         assertEquals(
-            0, pagingSource.getRefreshKey(
+            0,
+            pagingSource.getRefreshKey(
                 PagingState(
                     listOf(),
                     1,
                     PagingConfig(pageSize = 50),
-                    10
-                )
-            )
+                    10,
+                ),
+            ),
         )
 
         assertEquals(expected, actual)
 
         Assert.assertTrue(viewModel.query.value.isNotEmpty())
-
     }
 
     @Test
     fun `search with query error test`() = runBlocking {
-
         val pagingSource = NasaPagingSource(
             "test",
-            repository = repository
+            repository = repository,
         )
 
         coEvery {
@@ -120,17 +115,13 @@ internal class SearchViewModelTest {
             .Refresh(
                 key = 1,
                 loadSize = 1,
-                placeholdersEnabled = false
+                placeholdersEnabled = false,
             )
 
         val expected: PagingSource.LoadResult.Error<Any, Any> = PagingSource
             .LoadResult
             .Error(RuntimeException())
 
-
         assertNotNull(pagingSource.load(params))
-
     }
-
-
 }

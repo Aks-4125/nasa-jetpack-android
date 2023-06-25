@@ -10,7 +10,7 @@ data class PlanetInfo(
     @field:Json(name = "description") var description: String? = null,
     @field:Json(name = "nasa_id") var nasaId: String,
     @field:Json(name = "title") var title: String? = null,
-    var imageUrl: String? = null
+    var imageUrl: String? = null,
 )
 
 fun List<PlanetInfo>.asDatabaseModel(): List<PlanetEntity> {
@@ -19,8 +19,8 @@ fun List<PlanetInfo>.asDatabaseModel(): List<PlanetEntity> {
             nasaId = it.nasaId,
             dateCreated = it.dateCreated.orEmpty(),
             title = it.title.orEmpty(),
-            description =  it.description.orEmpty(),
-            imageUrl = it.imageUrl.orEmpty()
+            description = it.description.orEmpty(),
+            imageUrl = it.imageUrl.orEmpty(),
         )
     }
 }

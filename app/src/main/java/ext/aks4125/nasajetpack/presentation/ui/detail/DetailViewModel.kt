@@ -17,7 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class DetailViewModel @Inject constructor(
     private val repository: NasaRepository,
-    savedStateHandle: SavedStateHandle
+    savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
 
     private val nasaId: String? = savedStateHandle[NasaDestinationsArgs.ID]
@@ -26,17 +26,20 @@ class DetailViewModel @Inject constructor(
         private set
 
     init {
-        if (nasaId != null)
+        if (nasaId != null) {
             viewModelScope.launch {
                 uiState = uiState.copy(item = repository.getPlanetDetail(nasaId))
             }
+        }
     }
 
     fun formatDate(date: String): String {
         val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault())
         val formatter = SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault())
-        return if (date.isEmpty()) "" else parser.parse(date)?.let { formatter.format(it) }
-            ?: ""
+        return if (date.isEmpty()) {
+            ""
+        } else {
+            parser.parse(date)?.let { formatter.format(it) } ?: ""
+        }
     }
-
 }

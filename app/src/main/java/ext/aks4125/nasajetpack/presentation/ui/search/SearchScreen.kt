@@ -1,68 +1,61 @@
 package ext.aks4125.nasajetpack.presentation.ui.search
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SearchBar
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.semantics.onClick
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemContentType
 import androidx.paging.compose.itemKey
-import coil.compose.AsyncImage
-import ext.aks4125.core.ui.components.shimmerBrush
+import ext.aks4125.core.ui.theme.NasaJetpackTheme
 import ext.aks4125.nasajetpack.R
 import ext.aks4125.nasajetpack.data.network.PlanetInfo
-import ext.aks4125.nasajetpack.presentation.navigation.Dimens.dimen_150
-import ext.aks4125.nasajetpack.presentation.navigation.Dimens.dimen_16
-import ext.aks4125.nasajetpack.presentation.navigation.Dimens.dimen_20
 import ext.aks4125.nasajetpack.presentation.navigation.Dimens.dimen_4
-import ext.aks4125.nasajetpack.presentation.navigation.Dimens.dimen_8
 
+/**
 
+Composable function that represents the search screen UI.
+
+@param viewModel The SearchViewModel instance used to handle search functionality.
+
+@param navigateToDetail Callback function for navigating to the detail screen.
+ */
 @Composable
 internal fun SearchScreen(
     viewModel: SearchViewModel,
-    navigateToDetail: (String) -> Unit
+    navigateToDetail: (String) -> Unit,
 ) {
     val items = viewModel.itemPager.collectAsLazyPagingItems()
 
@@ -70,15 +63,19 @@ internal fun SearchScreen(
         modifier = Modifier
             .fillMaxWidth()
             .fillMaxHeight()
-            .background(MaterialTheme.colorScheme.background)
+            .background(MaterialTheme.colorScheme.background),
     ) {
         CustomSearchBar(viewModel)
         // lazy load items
         ListItem(item = items, viewModel = viewModel, navigateToDetail = navigateToDetail)
     }
-
 }
 
+/**
+
+Composable function that represents the custom search bar UI.
+@param viewModel The SearchViewModel instance used to handle search functionality.
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun CustomSearchBar(viewModel: SearchViewModel) {
@@ -117,44 +114,54 @@ internal fun CustomSearchBar(viewModel: SearchViewModel) {
                 IconButton(onClick = { viewModel.setQuery("") }) {
                     Icon(
                         Icons.Default.Clear,
-                        contentDescription = null
+                        contentDescription = null,
                     )
                 }
             },
-            content = {})
+            content = {},
+        )
+
         Spacer(modifier = Modifier.height(dimen_4))
     }
 }
 
+/**
+Composable function that represents the list of search results.
 
+@param item The LazyPagingItems representing the search results.
+
+@param viewModel The SearchViewModel instance used to handle search functionality.
+
+@param navigateToDetail Callback function for navigating to the detail screen.
+ */
 @Composable
 fun ListItem(
     item: LazyPagingItems<PlanetInfo>,
     viewModel: SearchViewModel,
     navigateToDetail: (String) -> Unit,
 ) {
-
-    if (viewModel.query.value.isNotEmpty())
+    if (viewModel.query.value.isNotEmpty()) {
         when (item.loadState.refresh) {
             LoadState.Loading -> {
                 Column(
                     modifier = Modifier.fillMaxSize(),
                     verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally
+                    horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
                     CircularProgressIndicator()
                 }
             }
 
             is LoadState.Error -> {
-                if (viewModel.query.value.isNotEmpty())
+                if (viewModel.query.value.isNotEmpty()) {
                     Column(
                         modifier = Modifier.fillMaxSize(),
                         verticalArrangement = Arrangement.Center,
-                        horizontalAlignment = Alignment.CenterHorizontally
+                        horizontalAlignment = Alignment.CenterHorizontally,
                     ) {
                         Text(text = stringResource(R.string.something_went_wrong))
                     }
+                }
             }
 
             else -> {
@@ -162,71 +169,43 @@ fun ListItem(
                     items(
                         count = item.itemCount,
                         key = item.itemKey(),
-                        contentType = item.itemContentType()
+                        contentType = item.itemContentType(),
                     ) { index ->
                         item[index]?.let {
                             PlanetTile(
                                 planetInfo = it,
                                 modifier = Modifier
                                     .fillMaxWidth(),
-                                navigateToDetail = navigateToDetail
+                                navigateToDetail = navigateToDetail,
                             )
                         }
                     }
                 }
             }
         }
+    }
 }
 
+/**
+ * Preview function for the NasaNavGraph composable.
+ * It provides a preview of the UI layout in the Android Studio preview window.
+ */
 @Composable
-fun PlanetTile(planetInfo: PlanetInfo, modifier: Modifier, navigateToDetail: (String) -> Unit) {
-    val showShimmer = remember { mutableStateOf(true) }
-    Card(
-        shape = RoundedCornerShape(dimen_8),
-        modifier = modifier
-            .padding(start = dimen_8, bottom = dimen_8, end = dimen_8)
-            .fillMaxWidth(),
-        elevation = CardDefaults.cardElevation(
-            defaultElevation = dimen_4,
-        ),
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.primaryContainer,
-        ),
-    ) {
-        Row(modifier = Modifier
-            .clickable(onClick = { navigateToDetail(planetInfo.nasaId) })
-            .semantics {
-                onClick(label = "Navigate to Detail Screen", action = null)
-            }) {
-            AsyncImage(
-                modifier = Modifier
-                    .clip(RoundedCornerShape(dimen_20))
-                    .background(
-                        shimmerBrush(
-                            targetValue = 1300f, showShimmer = showShimmer.value
-                        )
-                    )
-                    .width(dimen_150)
-                    .fillMaxWidth()
-                    .height(dimen_150),
-                model = planetInfo.imageUrl.orEmpty(),
-                contentDescription = null,
-                onSuccess = { showShimmer.value = false },
-                contentScale = ContentScale.FillBounds
+@Preview(showBackground = true)
+fun PlanetTilePreview() {
+    NasaJetpackTheme {
+        Surface {
+            PlanetTile(
+                planetInfo = PlanetInfo(
+                    "nasaId",
+                    "12:12332:13:Z",
+                    "Art of Moon",
+                    "test description\ntest line 2\nline 3 \nline 4",
+                    "test",
+                ),
+                modifier = Modifier.fillMaxWidth(),
+                navigateToDetail = { arg -> arg },
             )
-
-            Text(
-                modifier = modifier
-                    .padding(dimen_16)
-                    .fillMaxWidth(),
-                text = planetInfo.title.orEmpty(),
-                style = MaterialTheme.typography.titleMedium,
-                maxLines = 3,
-                overflow = TextOverflow.Ellipsis
-            )
-            Spacer(modifier = Modifier.height(dimen_4))
         }
     }
-
-    Spacer(modifier = Modifier.height(dimen_8))
 }

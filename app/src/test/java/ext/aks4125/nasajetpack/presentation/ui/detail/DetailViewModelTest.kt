@@ -11,7 +11,7 @@ import io.mockk.mockk
 import io.mockk.unmockkAll
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -22,7 +22,6 @@ const val TEST_ARGUMENT = "ID"
 @OptIn(ExperimentalCoroutinesApi::class)
 class DetailViewModelTest {
 
-
     @ExperimentalCoroutinesApi
     @get:Rule
     var coroutineTestRule = MainDispatcherRule()
@@ -32,10 +31,8 @@ class DetailViewModelTest {
     private lateinit var viewModel: DetailViewModel
     private lateinit var savedStateHandle: SavedStateHandle
 
-
     fun setUp() {
         MockKAnnotations.init(this, relaxUnitFun = true)
-
     }
 
     @Before
@@ -65,24 +62,22 @@ class DetailViewModelTest {
             assertEquals(it?.title, TestData.testDataPlanetEntity().title)
             assertEquals(it?.description, TestData.testDataPlanetEntity().description)
         }
-
         coVerify(atLeast = 1) { repository.getPlanetDetail(any()) }
     }
-
 
     @Test
     fun `format date test`() = runBlocking {
         assertEquals(
-            "01.08.2014 00:00", viewModel.formatDate(TestData.testDataPlanetEntity().dateCreated)
+            "01.08.2014 00:00",
+            viewModel.formatDate(TestData.testDataPlanetEntity().dateCreated),
         )
     }
-
 
     @Test
     fun `format date null empty test`() = runBlocking {
         assertEquals(
             EMPTY,
-            viewModel.formatDate(EMPTY)
+            viewModel.formatDate(EMPTY),
         )
     }
 }

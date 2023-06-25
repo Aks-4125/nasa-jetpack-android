@@ -14,30 +14,31 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import ext.aks4125.core.R
 
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ScaffoldWithTopBar(
     navController: NavHostController,
-    finish: () -> Unit
+    finish: () -> Unit,
 ) {
     TopAppBar(
         title = {
             Text(
                 text = stringResource(id = R.string.app_name),
-                style = MaterialTheme.typography.bodyLarge
+                style = MaterialTheme.typography.bodyLarge,
+                color = MaterialTheme.colorScheme.background,
             )
         },
         navigationIcon = {
             IconButton(onClick = {
-                if (!navController.navigateUp())
+                if (!navController.navigateUp()) {
                     finish()
+                }
             }) {
                 Icon(Icons.Filled.ArrowBack, "backIcon")
             }
         },
         colors = TopAppBarDefaults.mediumTopAppBarColors(
-            containerColor = MaterialTheme.colorScheme.primary
+            containerColor = MaterialTheme.colorScheme.primary,
         ),
     )
 }

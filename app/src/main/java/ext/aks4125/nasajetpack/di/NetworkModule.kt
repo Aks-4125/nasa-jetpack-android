@@ -23,12 +23,13 @@ object NetworkModule {
     @Singleton
     @Provides
     fun provideOkHttpClient() = OkHttpClient.Builder().apply {
-        if (BuildConfig.DEBUG)
+        if (BuildConfig.DEBUG) {
             addInterceptor(
                 HttpLoggingInterceptor().apply {
                     level = HttpLoggingInterceptor.Level.BODY
-                }
+                },
             )
+        }
     }.build()
 
     @Singleton
@@ -36,13 +37,12 @@ object NetworkModule {
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
         .addConverterFactory(
             MoshiConverterFactory.create(
-                Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
-            )
+                Moshi.Builder().add(KotlinJsonAdapterFactory()).build(),
+            ),
         )
         .baseUrl(END_POINT)
         .client(okHttpClient)
         .build()
-
 
     @Provides
     @Singleton

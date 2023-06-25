@@ -10,15 +10,15 @@ object TestData {
             description = "Interior View of Hangar M Annex",
             nasaId = "KSC-20150402-PH",
             title = "KSC-20150402-PH-PR_17hangM",
-            imageUrl = "thumb.jpg"
-        )
+            imageUrl = "thumb.jpg",
+        ),
     )
 
-    fun testDataPlanetEntity()  = PlanetEntity(
+    fun testDataPlanetEntity() = PlanetEntity(
         dateCreated = "2014-08-01T00:00:00Z",
         description = "Interior View of Hangar M Annex",
         nasaId = "KSC-20150402-PH",
         title = "KSC-20150402-PH-PR_17hangM",
-        imageUrl = "thumb.jpg"
+        imageUrl = "thumb.jpg",
     )
 }

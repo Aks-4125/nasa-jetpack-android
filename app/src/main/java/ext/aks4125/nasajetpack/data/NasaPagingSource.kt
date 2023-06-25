@@ -1,14 +1,12 @@
 package ext.aks4125.nasajetpack.data
 
-import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.squareup.leakcanary.core.BuildConfig
 import ext.aks4125.nasajetpack.data.network.PlanetInfo
 
 open class NasaPagingSource(
     private val query: String,
-    private val repository: NasaRepository
+    private val repository: NasaRepository,
 ) : PagingSource<Int, PlanetInfo>() {
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, PlanetInfo> {
         return try {
