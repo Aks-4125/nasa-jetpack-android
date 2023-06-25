@@ -204,7 +204,7 @@ fun PlanetTilePreview() {
                     "test",
                 ),
                 modifier = Modifier.fillMaxWidth(),
-                navigateToDetail = { arg -> arg },
+                navigateToDetail = { },
             )
         }
     }

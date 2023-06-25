@@ -119,7 +119,7 @@ fun PlanetPreview() {
                     "test",
                 ),
                 modifier = Modifier.fillMaxWidth(),
-                navigateToDetail = { arg -> arg },
+                navigateToDetail = { },
             )
         }
     }
