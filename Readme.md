@@ -123,7 +123,7 @@ To get started with the project, follow these steps:
 
 Unit Tests
 
-![](https://github.com/Aks-4125/nasa-jetpack-android/blob/master/screenshots/code-coverage.JPG)
+![](https://github.com/Aks-4125/nasa-jetpack-android/blob/master/screenshots/unit-code-coverage.JPG)
 
 UI Tests
 
