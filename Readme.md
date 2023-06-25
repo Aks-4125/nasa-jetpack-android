@@ -14,17 +14,22 @@ The project follows a multimodule architecture with the following modules:
 - **Core Module**: Contains common UI components and utilities that can be shared across different modules.
 - **Main Module**: Contains feature-specific implementations and functionalities.
 
+---
+
 ## Code Quality and Continuous Integration
 
 - **Code Style**: The code in this repository adheres to the [ktlint](https://ktlint.github.io/) code style.
 - **Code Scanning**: The project includes code scanning with ktlint & Android Code Inspector to ensure consistent code formatting and style.
 - **Continuous Integration**: The project is integrated with CircleCI for automated build, testing, and code quality checks.
 
+---
 
 ## Features
 - **Dynamic Dark Mode UI**: The project supports dynamic dark mode UI for mobile and tablet devices. It adjusts the app's theme based on the system's dark mode setting, providing a consistent user experience across different lighting conditions.
 
 - **Responsive Design**: The UI is optimized for different device orientations, including vertical and horizontal layouts. It ensures a seamless user interface regardless of the device's orientation.
+
+---
 
 # Android Libraries
 
@@ -81,6 +86,7 @@ The project utilizes the following libraries:
 - **Room**
   - [AndroidX Room](https://developer.android.com/topic/libraries/architecture/room): Provides an abstraction layer over SQLite for database operations.
  
+---
 
 ## Screenshots
 
@@ -88,9 +94,16 @@ The project utilizes the following libraries:
 | ------------- | ------------- |
 | ![](https://github.com/Aks-4125/nasa-jetpack-android/blob/master/screenshots/darkmode.gif) | ![](https://github.com/Aks-4125/nasa-jetpack-android/blob/master/screenshots/tablet.gif)|
 
+---
 
+## Getting Started
+To get started with the project, follow these steps:
 
+1. Clone the repository to your local machine.
+2. Open the project in Android Studio.
+3. Build and run the project on your Android device or emulator.
 
+---
 
 ## Download APK directly from <a href="https://github.com/Aks-4125/nasa-jetpack-android/blob/master/screenshots/nasa-debug.apk" download>Here</a>
 
