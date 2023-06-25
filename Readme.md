@@ -109,6 +109,16 @@ To get started with the project, follow these steps:
 
 ## Download Zip directly from <a href="https://github.com/Aks-4125/nasa-jetpack-android/blob/master/screenshots/Nasa%20Jetpack.zip" download>Here</a>
 
+---
+
+## Project Roadmap
+
+[Trello Board](https://trello.com/b/NZLRZL3O/nasa-android-board-akash)
+
+![](https://github.com/Aks-4125/nasa-jetpack-android/blob/master/screenshots/Trello-board.PNG)
+
+---
+
 
 License
 The project is licensed under the [MIT License](https://github.com/Aks-4125/nasa-jetpack-android/blob/master/LICENSE.md).
