@@ -90,7 +90,7 @@ The project utilizes the following libraries:
 
 ## Screenshots
 
- | Dark Mode  | Tablet |
+ | Mobile  | Tablet |
 | ------------- | ------------- |
 | ![](https://github.com/Aks-4125/nasa-jetpack-android/blob/master/screenshots/darkmode.gif) | ![](https://github.com/Aks-4125/nasa-jetpack-android/blob/master/screenshots/tablet.gif)|
 
