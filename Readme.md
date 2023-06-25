@@ -133,5 +133,6 @@ UI Tests
 
 ---
 
-##License
+## License
+
 The project is licensed under the [MIT License](https://github.com/Aks-4125/nasa-jetpack-android/blob/master/LICENSE.md).
