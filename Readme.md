@@ -53,8 +53,8 @@ The project utilizes the following libraries:
   - [Dagger Hilt](https://dagger.dev/hilt): A compile-time dependency injection framework for Android.
 
 - **Networking**
-  - [Retrofit](https://square.github.io/retrofit): A type-safe HTTP client for Android and Java.
-  - [OkHttp](https://square.github.io/okhttp): A powerful HTTP client for Android and Java.
+  - [Retrofit](https://square.github.io/retrofit):  HTTP client for Android.
+  - [OkHttp](https://square.github.io/okhttp): HTTP client for Android.
 
 - **JSON Deserialization**
   - [Moshi](https://github.com/square/moshi): A modern JSON library for Kotlin and Java.
