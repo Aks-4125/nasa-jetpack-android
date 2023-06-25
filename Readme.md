@@ -123,14 +123,15 @@ To get started with the project, follow these steps:
 
 Unit Tests
 
-[](https://github.com/Aks-4125/nasa-jetpack-android/blob/master/screenshots/junit-code-coverage.JPG)
+![](https://github.com/Aks-4125/nasa-jetpack-android/blob/master/screenshots/junit-code-coverage.JPG)
 
 UI Tests
 
 
-[](https://github.com/Aks-4125/nasa-jetpack-android/blob/master/screenshots/ui-tests.JPG)
+![](https://github.com/Aks-4125/nasa-jetpack-android/blob/master/screenshots/ui-tests.JPG)
 
 
+---
 
-License
+##License
 The project is licensed under the [MIT License](https://github.com/Aks-4125/nasa-jetpack-android/blob/master/LICENSE.md).
