@@ -24,12 +24,12 @@ jobs:
       - run:
           name: Run UnitTest
           command: ./gradlew assembleDebugUnitTest
-      - run:
-          name: Create avd
-          command: |
-            SYSTEM_IMAGES="system-images;android-29;default;x86"
-            sdkmanager "$SYSTEM_IMAGES"
-            echo "no" | avdmanager --verbose create avd -n test -k "$SYSTEM_IMAGES"
+#      - run:
+#          name: Create avd
+#          command: |
+#            SYSTEM_IMAGES="system-images;android-29;default;x86"
+#            sdkmanager "$SYSTEM_IMAGES"
+#            echo "no" | avdmanager --verbose create avd -n test -k "$SYSTEM_IMAGES"
 #      - run:
 #          name: Launch emulator
 #          command: |
