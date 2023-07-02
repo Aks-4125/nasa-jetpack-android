@@ -16,8 +16,7 @@ import ext.aks4125.core.ui.components.ScaffoldWithTopBar
 import ext.aks4125.nasajetpack.presentation.ui.detail.DetailScreen
 import ext.aks4125.nasajetpack.presentation.ui.search.SearchScreen
 import ext.aks4125.nasajetpack.presentation.ui.search.SearchViewModel
-import ext.aks4125.nasajetpack.presentation.util.NasaDestinations
-import ext.aks4125.nasajetpack.presentation.util.NasaDestinationsArgs
+import ext.aks4125.nasajetpack.presentation.util.*
 
 /**
  * Composable function that defines the navigation graph of the NASA Jetpack app.
@@ -33,6 +32,8 @@ fun NasaNavGraph(
     startDestination: String = NasaDestinations.LANDING_PAGE_SEARCH,
     finish: () -> Unit,
 ) {
+
+
     val viewModel: SearchViewModel = hiltViewModel()
 
     Scaffold(
