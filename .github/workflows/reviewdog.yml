@@ -1,0 +1,16 @@
+name: ktlint
+on: [pull_request]
+jobs:
+  ktlint:
+    name: Check Code Quality
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone repo
+        uses: actions/checkout@master
+        with:
+          fetch-depth: 1
+      - name: Run ktlint with reviewdog
+        uses: ScaCap/action-ktlint@v1.7.1
+        with:
+          github_token: ${{ secrets.GH_TOKEN }}
